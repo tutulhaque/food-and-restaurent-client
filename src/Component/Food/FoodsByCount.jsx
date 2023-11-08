@@ -5,7 +5,7 @@ const FoodsByCount = () => {
   const [topFoods, setTopFoods] = useState([]);
 
   useEffect(() => {
-    fetch("https://food-and-restaurent-server.vercel.app/foods")
+    fetch("http://localhost:5000/foods")
       .then((response) => response.json())
       .then((data) => {
         data.sort((a, b) => b.count - a.count);

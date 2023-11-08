@@ -11,7 +11,7 @@ const MyCart = () => {
         if (email) {
             // Fetch cart items for the logged-in user based on their email
             // Make a GET request to your server's API endpoint that fetches the user's cart items
-            fetch(`https://food-and-restaurent-server.vercel.app/cart-by-email?email=${email}`)
+            fetch(`http://localhost:5000/cart-by-email?email=${email}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setCartItems(data);
@@ -33,7 +33,7 @@ const MyCart = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://food-and-restaurent-server.vercel.app/add-to-cart/${_id}`,{
+                fetch(`http://localhost:5000/add-to-cart/${_id}`,{
                     method: "DELETE",
 
                 })

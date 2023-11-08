@@ -6,6 +6,7 @@ import { signInAnonymously } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
 const Login = () => {
     const { singInUser, signInWithGoogle } = useContext(AuthContext)
@@ -21,8 +22,18 @@ const Login = () => {
             .then(result => {
                 toast("Logged In Successfully");
                 console.log(result.user)
-                e.target.reset();
-                navigate(location?.state ? location?.state : '/')
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const user = { email };
+
+                // get access token
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {
+                            navigate(location?.state ? location?.state : '/')
+                        }
+                    })
             })
             .catch(error => {
                 toast("Wrong Email or Password");

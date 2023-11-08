@@ -36,7 +36,7 @@ const Register = () => {
             toast.success("User successfully created");
             console.log(result);
             // Insert to database
-            fetch('https://food-and-restaurent-server.vercel.app/users', {
+            fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

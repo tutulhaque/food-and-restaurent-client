@@ -10,7 +10,7 @@ const MyFood = () => {
     useEffect(() => {
         const userEmail = user ? user.email : <p className="text-5xl">Food Empty</p>;
         if (userEmail) {
-            fetch(`https://food-and-restaurent-server.vercel.app/my-food-email?userEmail=${userEmail}`)
+            fetch(`http://localhost:5000/my-food-email?userEmail=${userEmail}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setFoodItems(data);
