@@ -1,61 +1,85 @@
 import Swal from "sweetalert2";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react"; // Import useState
+import { useContext, useState } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 
 const CheckoutForm = () => {
     const { user } = useContext(AuthContext);
     const singleFood = useLoaderData();
-    const { name, price } = singleFood;
+    const { name, price, quantity: availableQuantity, userEmail } = singleFood;
     const navigate = useNavigate();
 
-    // Use state to track the quantity and price
     const [quantity, setQuantity] = useState(1);
     const [totalPrice, setTotalPrice] = useState(price);
 
-    // Function to handle quantity change
     const handleQuantityChange = (event) => {
         const newQuantity = parseInt(event.target.value, 10);
         if (newQuantity < 1) {
-          // Prevent setting quantity less than 1
-          setQuantity(1);
+            // quantity less than 1
+            setQuantity(1);
+        } else if (newQuantity > availableQuantity) {
+            // quantity greater than availableQuantity
+            setQuantity(availableQuantity);
+            Swal.fire({
+                title: "Error",
+                text: "The requested quantity is not available.",
+                icon: "error",
+                confirmButtonText: "Close",
+            });
         } else {
-          const newPrice = newQuantity * price;
-          setQuantity(newQuantity); // Update the quantity
-          setTotalPrice(newPrice); // Update the total price
+            const newPrice = newQuantity * price;
+            setQuantity(newQuantity);
+            setTotalPrice(newPrice); 
         }
-      };
+    };
 
-    // handleCheckout form
     const handleCheckout = (event) => {
         event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const buyerName = form.buyerName.value;
-        const email = form.email.value;
-        const date = form.date.value;
-        const photo = singleFood.photo;
-        const newFood = { name, buyerName, email, quantity, price:totalPrice,photo, date };
-
-        fetch("http://localhost:5000/add-to-cart", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(newFood),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.insertedId) {
-                    Swal.fire({
-                        title: "Success!",
-                        text: "Food Added To Cart Successfully.",
-                        icon: "success",
-                        confirmButtonText: "Close",
-                    });
-                    navigate('/my-cart');
-                }
+        if (user.email === userEmail) {
+            // purchasing own added food items restriction
+            Swal.fire({
+                title: "Error",
+                text: "You can't purchase your own added food items.",
+                icon: "error",
+                confirmButtonText: "Close",
             });
+        } else if (quantity > availableQuantity) {
+            // purchasing more than availableQuantity restriction
+            Swal.fire({
+                title: "Error",
+                text: "The requested quantity is not available.",
+                icon: "error",
+                confirmButtonText: "Close",
+            });
+        } else {
+            const form = event.target;
+            const name = form.name.value;
+            const buyerName = form.buyerName.value;
+            const email = form.email.value;
+            const date = form.date.value;
+            const photo = singleFood.photo;
+            const newFood = { name, buyerName, email, quantity, price: totalPrice, photo, date };
+
+            fetch("http://localhost:5000/add-to-cart", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(newFood),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.insertedId) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Food Added To Cart Successfully.",
+                            icon: "success",
+                            confirmButtonText: "Close",
+                        });
+                        navigate('/my-cart');
+                    }
+                });
+        }
     };
 
     return (
@@ -63,7 +87,6 @@ const CheckoutForm = () => {
             <div className="max-w-7xl mx-auto bg-[#f7f7f7] p-10">
                 <h1 className="text-4xl font-extrabold">Checkout</h1>
                 <form onSubmit={handleCheckout}>
-                    {/* Row-01 */}
                     <div className="flex gap-3 my-3">
                         <div className="form-control w-1/2">
                             <label className="label">
@@ -96,7 +119,6 @@ const CheckoutForm = () => {
                             </label>
                         </div>
                     </div>
-                    {/* Row-02 */}
                     <div className="flex gap-3 my-3">
                         <div className="form-control w-1/2">
                             <label className="label">
@@ -130,7 +152,6 @@ const CheckoutForm = () => {
                             </label>
                         </div>
                     </div>
-                    {/* Row-03 */}
                     <div className="flex gap-3 my-3">
                         <div className="form-control w-1/2">
                             <label className="label">

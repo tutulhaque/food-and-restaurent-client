@@ -81,7 +81,7 @@ const AllFood = () => {
                     </button>
                 </div>
             </div>
-            <div className="my-10 grid grid-cols-3 justify-between gap-6">
+            <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between gap-6">
                 {filteredFoods.map((food) => (
                     <div className="card card-compact w-96 bg-base-100 shadow-xl" key={food._id}>
                         <figure><img src={food.photo} alt="Food" /></figure>

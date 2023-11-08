@@ -6,12 +6,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBTW2TclMnfe8uPy7D5rEDBfAP84k676KA",
-  authDomain: "fashion-and-apparel.firebaseapp.com",
-  projectId: "fashion-and-apparel",
-  storageBucket: "fashion-and-apparel.appspot.com",
-  messagingSenderId: "613439269229",
-  appId: "1:613439269229:web:abadc507cd3a30097c9264"
+  apiKey: "AIzaSyCOfRqa4vaOzucHxsaSOPJ3b4SQE-bjjb8",
+  authDomain: "food-and-restaurant-f7f9f.firebaseapp.com",
+  projectId: "food-and-restaurant-f7f9f",
+  storageBucket: "food-and-restaurant-f7f9f.appspot.com",
+  messagingSenderId: "6603452212",
+  appId: "1:6603452212:web:19c11faf70027bec38bf61"
 };
 
 // Initialize Firebase

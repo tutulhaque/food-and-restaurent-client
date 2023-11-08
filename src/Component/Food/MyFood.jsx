@@ -26,11 +26,11 @@ const MyFood = () => {
                 <title>My food</title>
             </Helmet>
             <div className="max-w-7xl mx-auto bg-[#f7f7f7] p-10">
-            <div className="mt-10 grid grid-cols-3 justify-between gap-6">
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between gap-6">
 
                 {
                     foodItems.map(food => <>
-                        <div className="card card-compact w-96 bg-base-100 shadow-xl" key={food._id}>
+                        <div className="card card-compact bg-base-100 shadow-xl" key={food._id}>
                             <figure><img src={food.photo} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <div className="flex gap-5">

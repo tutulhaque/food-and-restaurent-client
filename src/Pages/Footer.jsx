@@ -20,7 +20,7 @@ const Footer = () => {
                 </div>
             </nav>
             <aside>
-                <p>Copyright © 2023 - All right reserved by Restaurant</p>
+                <p>Copyright © 2023 - All right reserved by PH Restaurant</p>
             </aside>
         </footer>
     );
