@@ -1,6 +1,6 @@
 import googleIcon from '../assets/g-icon.png';
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Component/Providers/AuthProvider";
 import { signInAnonymously } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,6 +10,8 @@ import { Helmet } from 'react-helmet';
 const Login = () => {
     const { singInUser, signInWithGoogle } = useContext(AuthContext)
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location)
     const handleLogin = e => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -20,7 +22,7 @@ const Login = () => {
                 toast("Logged In Successfully");
                 console.log(result.user)
                 e.target.reset();
-                navigate('/');
+                navigate(location?.state ? location?.state : '/')
             })
             .catch(error => {
                 toast("Wrong Email or Password");
@@ -31,13 +33,13 @@ const Login = () => {
         signInWithGoogle()
             .then(result => console.log(result.user))
             .catch(error => console.error(error))
-        navigate('/');
+            navigate(location?.state?location?.state : '/')
     }
 
     return (
         <div className="hero min-h-screen bg-base-200">
             <Helmet>
-            <title>Login</title>
+                <title>Login</title>
             </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
