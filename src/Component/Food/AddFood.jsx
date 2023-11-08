@@ -20,7 +20,7 @@ const AddFood = () => {
         const photo = form.photo.value;
         const newFood = { name, category, quantity, price, description, origin, photo,userEmail: user.email,count:0}
         console.log(newFood);
-        fetch('http://localhost:5000/foods', {
+        fetch('https://food-and-restaurent-server.vercel.app/foods', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

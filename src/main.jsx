@@ -55,20 +55,20 @@ const router = createBrowserRouter([
       {
         path: "/all-food",
         element: <AllFood></AllFood>,
-        loader: ()=> fetch('http://localhost:5000/foodsCount')
+        loader: ()=> fetch('https://food-and-restaurent-server.vercel.app/foodsCount')
 
       },
       {
         path: "/food/:id",
         element: <Food></Food>,
-        loader: ({params})=>fetch(`http://localhost:5000/food/${params.id}`)
+        loader: ({params})=>fetch(`https://food-and-restaurent-server.vercel.app/food/${params.id}`)
 
 
       },
       {
         path: "/update-food/:id",
         element: <PrivateRoutes><UpdateFood></UpdateFood></PrivateRoutes>,
-        loader: ({params})=>fetch(`http://localhost:5000/food/${params.id}`)
+        loader: ({params})=>fetch(`https://food-and-restaurent-server.vercel.app/food/${params.id}`)
       },
       {
         path: "/blog",
@@ -88,7 +88,7 @@ const router = createBrowserRouter([
       {
         path: "/food/checkout/:id",
         element: <PrivateRoutes><CheckoutForm></CheckoutForm></PrivateRoutes>,
-        loader: ({params})=>fetch(`http://localhost:5000/food/${params.id}`)
+        loader: ({params})=>fetch(`https://food-and-restaurent-server.vercel.app/food/${params.id}`)
 
       },
     ]

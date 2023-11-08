@@ -2,9 +2,8 @@
 
 Welcome to PH Restaurant, where we take you on a culinary journey filled with delectable, diverse, and scrumptious dishes that span the gourmet spectrum. Our menu is a celebration of savory and exotic flavors, all expertly prepared to deliver culinary delights and artisanal creations. Explore the fusion of international and local ingredients in our signature specialties, and embark on a gastronomic journey that promises an unforgettable dining experience.
 
-## GitHub Repositories
-- [Client-Side Repository](https://github.com/Programming-Hero-web-course/b8a11-client-side-tutulhaque)
-- [Server-Side Repository](https://github.com/Programming-Hero-web-course/b8a11-server-side-tutulhaque)
+## Live Link
+- [Firebase] https://food-and-restaurant-f7f9f.web.app/
 
 ## Key Website Features
 

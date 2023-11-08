@@ -28,7 +28,7 @@ const Food = () => {
     //     };
 
     //     // Make a POST request to server's
-    //     fetch('http://localhost:5000/add-to-cart', {
+    //     fetch('https://food-and-restaurent-server.vercel.app/add-to-cart', {
     //         method: 'POST',
     //         headers: {
     //             'content-type': 'application/json'

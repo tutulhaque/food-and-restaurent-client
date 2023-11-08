@@ -60,7 +60,7 @@ const CheckoutForm = () => {
             const photo = singleFood.photo;
             const newFood = { name, buyerName, email, quantity, price: totalPrice, photo, date };
 
-            fetch("http://localhost:5000/add-to-cart", {
+            fetch("https://food-and-restaurent-server.vercel.app/add-to-cart", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
